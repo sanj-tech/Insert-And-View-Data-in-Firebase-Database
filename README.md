@@ -5,3 +5,6 @@
 ![output-2](https://user-images.githubusercontent.com/81187698/122218111-b5e07080-cecb-11eb-95c3-7683518f6f55.PNG)
 ![output-3](https://user-images.githubusercontent.com/81187698/122218309-f344fe00-cecb-11eb-947a-1fc7f386c75b.PNG)
 ![output-4](https://user-images.githubusercontent.com/81187698/122218314-f4762b00-cecb-11eb-9db5-e11fb7d25e3a.PNG)
+![firebase-alert](https://user-images.githubusercontent.com/81187698/122245246-31015100-cee3-11eb-8671-90db3295ab41.PNG)
+![update](https://user-images.githubusercontent.com/81187698/122245259-33fc4180-cee3-11eb-86fa-40a353bf619b.PNG)
+![firebase-node](https://user-images.githubusercontent.com/81187698/122245271-35c60500-cee3-11eb-94ff-edb244fbc379.PNG)
