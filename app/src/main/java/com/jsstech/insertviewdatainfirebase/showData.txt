@@ -1,0 +1,176 @@
+showData.java
+
+package com.jsstech.insertviewdatainfirebase;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShowData extends AppCompatActivity {
+    ListView listView;
+    List<UserModel> list;
+    DatabaseReference databaseReference;
+
+    private static final String Name_key="com.jsstech.insertviewdatainfirebase.NAME_";
+    private static final String email_key="com.jsstech.insertviewdatainfirebase.EMAIL_";
+    private static final String contact_key="com.jsstech.insertviewdatainfirebase.CONTACT_";
+    private static final String city_key="com.jsstech.insertviewdatainfirebase.CITY_";
+    private static final String lang_key="com.jsstech.insertviewdatainfirebase.LANG_";
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_show_data);
+        list=new ArrayList<>();
+
+        listView=findViewById(R.id.listV);
+        databaseReference= FirebaseDatabase.getInstance().getReference("user");
+
+       databaseReference.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               list.clear();
+               for (DataSnapshot usersnap:snapshot.getChildren()){
+                   UserModel model=usersnap.getValue(UserModel.class);
+                   list.add(model);
+               }
+               UserAdapter userAdapter=new UserAdapter(ShowData.this,list);
+               listView.setAdapter(userAdapter);
+               //open another Activity
+//for single click data goes no next activity
+               listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                   @Override
+                   public void onItemClick(AdapterView<?> adapterView,View view,int i,long l) {
+                       //TO GET THE DATA FROM MODEL CLASS
+                       UserModel user=list.get(i);
+                       Intent intent=new Intent(ShowData.this,ViewUserData.class);
+                       intent.putExtra(Name_key,user.getName());
+                       intent.putExtra(email_key,user.getEmail());
+                       intent.putExtra(contact_key,user.getContact());
+                       intent.putExtra(city_key,user.getCity());
+                       intent.putExtra(lang_key,user.getLang());
+
+
+                       startActivity(intent);
+                   }
+               });
+               //setOnItemLongClickListner display or show alert dialogue
+
+               listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                   @Override
+                   public boolean onItemLongClick(AdapterView<?> adapterView,View view,int i,long l) {
+                       UserModel user=list.get(i);
+//create method for alert dialogebox
+                       showUpdateDialog(user.getId(),user.getName(),user.getEmail(),
+                               user.getContact(),user.getCity(),user.getLang());
+
+
+                       return false;
+                   }
+               });
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
+
+    }
+//execute of alert Dialogbox
+    private void showUpdateDialog(String id,String name,String email,String contact,String city,String lang) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(ShowData.this);
+        LayoutInflater layoutInflater=getLayoutInflater();
+        View view=layoutInflater.inflate(R.layout.updatlayout,null);
+        builder.setView(view);
+//alert dialogbox which having edtittext(id,name,email,contact,city,lang)
+
+        final EditText editText_name=(EditText)view.findViewById(R.id.updatename);
+        final EditText editText_email=(EditText)view.findViewById(R.id.updateemail);
+        final EditText editText_contact=(EditText)view.findViewById(R.id.updatecontact);
+        final Spinner spinner_city=(Spinner)view.findViewById(R.id.updateCity);
+        final AutoCompleteTextView autoCompleteTextView=(AutoCompleteTextView) view.findViewById(R.id.updateLang);
+        Button btn_update=(Button)view.findViewById(R.id.update);
+
+        builder.setTitle("udating for "+name);
+
+        final AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+
+
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String uname=editText_name.getText().toString().trim();
+                String uemail=editText_email.getText().toString().trim();
+                String ucontact=editText_contact.getText().toString().trim();
+                String uspinner=spinner_city.getSelectedItem().toString().trim();
+                String ulang=autoCompleteTextView.getText().toString().trim();
+
+//for validation of all fields
+                if (uname.isEmpty()){
+
+                    editText_name.setError("name required");
+                    editText_name.requestFocus();
+                    return;
+                }
+                if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()){
+                    editText_email.setError("Enter valid Email Address");
+                    editText_email.requestFocus();
+                    return;
+
+                }
+                if (ucontact.isEmpty()){
+                    editText_contact.setError("contact required");
+                   editText_contact.requestFocus();
+                    return;
+                }
+                if (ulang.isEmpty()){
+                    autoCompleteTextView.setError("Language required");
+                    autoCompleteTextView.requestFocus();
+                    return;
+                }
+                updateUser(id,uname,uemail,ucontact,uspinner,ulang);
+                alertDialog.dismiss();
+
+            }
+        });
+
+    }
+
+    private boolean updateUser(String id,String uname,String uemail,String ucontact,String uspinner,String ulang) {
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("user").child(id);
+        UserModel user=new UserModel(id,uname,uemail,ucontact,uspinner,ulang);
+        databaseReference.setValue(user);
+        Toast.makeText(getApplicationContext(),"Data updated",Toast.LENGTH_LONG).show();
+    return true;
+
+    }
+}
+
+

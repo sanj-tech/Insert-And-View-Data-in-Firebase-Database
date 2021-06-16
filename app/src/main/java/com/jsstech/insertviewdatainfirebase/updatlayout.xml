@@ -1,0 +1,67 @@
+update Layout.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/updatename"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:hint="Enter Name">
+    </EditText>
+
+    <EditText
+        android:id="@+id/updateemail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Enter Email">
+    </EditText>
+    <EditText
+        android:id="@+id/updatecontact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Enter Contact">
+    </EditText>
+
+    <Spinner
+        android:id="@+id/updateCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:entries="@array/citySpinner"
+        android:hint="select City">
+
+    </Spinner>
+    <AutoCompleteTextView
+        android:id="@+id/updateLang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="select Language">
+
+    </AutoCompleteTextView>
+
+
+<Button
+    android:id="@+id/update"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="UpdateData"
+    />
+
+
+
+
+
+
+
+
+
+</LinearLayout>

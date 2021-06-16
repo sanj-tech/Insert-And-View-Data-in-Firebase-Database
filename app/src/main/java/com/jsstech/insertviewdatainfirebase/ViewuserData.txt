@@ -1,0 +1,126 @@
+View UserData.java
+
+package com.jsstech.insertviewdatainfirebase;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class ViewUserData extends AppCompatActivity {
+    TextView view_name,view_email,view_contact,view_city,view_lang;
+
+    private static final String Name_key="com.jsstech.insertviewdatainfirebase.NAME_";
+    private static final String email_key="com.jsstech.insertviewdatainfirebase.EMAIL_";
+    private static final String contact_key="com.jsstech.insertviewdatainfirebase.CONTACT_";
+    private static final String city_key="com.jsstech.insertviewdatainfirebase.CITY_";
+    private static final String lang_key="com.jsstech.insertviewdatainfirebase.LANG_";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_user_data);
+
+        view_name=findViewById(R.id.viewName);
+        view_email=findViewById(R.id.viewEmail);
+        view_contact=findViewById(R.id.viewContact);
+        view_city=findViewById(R.id.viewcity);
+        view_lang=findViewById(R.id.viewLang);
+//getting data from ShowData
+        Intent intent=getIntent();
+
+        String NAME=intent.getStringExtra(Name_key);
+        String EMAIL=intent.getStringExtra(email_key);
+        String CONTACT=intent.getStringExtra(contact_key);
+        String CITY=intent.getStringExtra(city_key);
+        String LANG=intent.getStringExtra(lang_key);
+
+//set text on textview
+        view_name.setText(NAME);
+        view_email.setText(EMAIL);
+        view_contact.setText(CONTACT);
+        view_city.setText(CITY);
+        view_lang.setText(LANG);
+
+    }
+}
+
+view_user_data.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ViewUserData">
+
+    <TextView
+        android:id="@+id/viewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="name"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/viewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/viewContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="contact"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:textColor="@color/white">
+
+        <TextView
+            android:id="@+id/viewcity"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:hint="city"/>
+        <TextView
+            android:id="@+id/viewLang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:hint="language"/>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
