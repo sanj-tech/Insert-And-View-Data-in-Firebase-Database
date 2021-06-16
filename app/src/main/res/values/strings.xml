@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">InsertViewDataInFirebase</string>
+
+    <string-array name="citySpinner">
+        <item>Pune</item>
+        <item>Mumbai</item>
+        <item>Banglore</item>
+        <item>Aurangabad</item>
+    </string-array>
+
+
+
+
+</resources>

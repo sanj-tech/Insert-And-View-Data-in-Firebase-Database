@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "610899328976",
+    "project_id": "insertviewdata-c89e6",
+    "storage_bucket": "insertviewdata-c89e6.appspot.com",
+    "firebase_url": "https://insertviewdata-c89e6-default-rtdb.firebaseio.com/"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610899328976:android:d8a999ee357c33131403d5",
+        "android_client_info": {
+          "package_name": "com.jsstech.insertviewdatainfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610899328976-ii6rllhf0kdp2mqo9e2cs1frsjagvgfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTXExkiR_RjFCEywa9TdzmcHSQb8Rk-bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610899328976-ii6rllhf0kdp2mqo9e2cs1frsjagvgfk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
