@@ -8,3 +8,6 @@
 ![firebase-alert](https://user-images.githubusercontent.com/81187698/122245246-31015100-cee3-11eb-8671-90db3295ab41.PNG)
 ![update](https://user-images.githubusercontent.com/81187698/122245259-33fc4180-cee3-11eb-86fa-40a353bf619b.PNG)
 ![firebase-node](https://user-images.githubusercontent.com/81187698/122245271-35c60500-cee3-11eb-94ff-edb244fbc379.PNG)
+![delete_output](https://user-images.githubusercontent.com/81187698/122568425-5b7c1700-d067-11eb-8611-e6381a873df1.PNG)
+![delete-1output](https://user-images.githubusercontent.com/81187698/122568433-5cad4400-d067-11eb-8dcc-4043b970f769.PNG)
+
